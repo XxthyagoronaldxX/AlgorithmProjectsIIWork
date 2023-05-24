@@ -56,7 +56,7 @@ public class TreeBstModel {
 
     private void preOrder(TreeNodeModel node) {
         if (node != null) {
-            acc += node.getValue() + " ";
+            acc += " " + node.getValue();
             preOrder(node.getLeft());
             preOrder(node.getRight());
         }
@@ -73,7 +73,7 @@ public class TreeBstModel {
     private void inOrder(TreeNodeModel node) {
         if (node != null) {
             inOrder(node.getLeft());
-            acc += node.getValue() + " ";
+            acc += " " + node.getValue();
             inOrder(node.getRight());
         }
     }
@@ -90,14 +90,14 @@ public class TreeBstModel {
         if (node != null) {
             posOrder(node.getLeft());
             posOrder(node.getRight());
-            acc += node.getValue() + " ";
+            acc += " " + node.getValue();
         }
     }
 
     @Override
     public String toString() {
-        return "Pre.: " + printPreOrder() + "\n" +
-                "In..: " + printInOrder() + "\n" +
-                "Post: " + printPosOrder() + "\n";
+        return "Pre.:" + printPreOrder() + "\n" +
+                "In..:" + printInOrder() + "\n" +
+                "Post:" + printPosOrder() + "\n";
     }
 }
