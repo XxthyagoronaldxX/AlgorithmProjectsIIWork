@@ -1,0 +1,188 @@
+import java.util.Scanner;
+
+class TreeNodeModel {
+    private int value;
+    private TreeNodeModel left;
+    private TreeNodeModel right;
+
+    public TreeNodeModel(int value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public TreeNodeModel getLeft() {
+        return left;
+    }
+
+    public void setLeft(TreeNodeModel left) {
+        this.left = left;
+    }
+
+    public TreeNodeModel getRight() {
+        return right;
+    }
+
+    public void setRight(TreeNodeModel right) {
+        this.right = right;
+    }
+}
+
+
+class TreeBstModel {
+    private TreeNodeModel rootNode;
+
+    public TreeBstModel() {
+        this.rootNode = null;
+    }
+
+    public static TreeBstModel buildFromValues(int[] values, int k) {
+        TreeBstModel treeBstModel = new TreeBstModel();
+
+        for (int i = 0;i < k;i++)
+            treeBstModel.addNode(values[i]);
+
+        return treeBstModel;
+    }
+
+    public boolean searchInTree(int value) {
+        TreeNodeModel currentNode = rootNode;
+
+        while (currentNode != null) {
+            if (value > currentNode.getValue())
+                currentNode = currentNode.getRight();
+            else if (value < currentNode.getValue())
+                currentNode = currentNode.getLeft();
+            else return true;
+        }
+
+        return false;
+    }
+
+    public void addNode(int value) {
+        if (searchInTree(value)) return;
+
+        TreeNodeModel node = new TreeNodeModel(value);
+
+        if (rootNode == null) {
+            rootNode = node;
+            return;
+        }
+
+        TreeNodeModel currentNode = rootNode;
+
+        while (true) {
+            if (node.getValue() > currentNode.getValue()) {
+                if (currentNode.getRight() == null) {
+                    currentNode.setRight(node);
+                    break;
+                }
+
+                currentNode = currentNode.getRight();
+            } else {
+                if (currentNode.getLeft() == null) {
+                    currentNode.setLeft(node);
+                    break;
+                }
+
+                currentNode = currentNode.getLeft();
+            }
+        }
+    }
+
+    public TreeNodeModel getRootNode() {
+        return rootNode;
+    }
+}
+
+
+class TreeHelper {
+    private static String acc;
+
+    public static String printTree(TreeBstModel treeBstModel) {
+        return "Pre.:" + printPreOrder(treeBstModel) + "\n"
+                + "In..:" + printInOrder(treeBstModel) + "\n"
+                + "Post:" + printPosOrder(treeBstModel) + "\n";
+    }
+
+    public static String printPreOrder(TreeBstModel treeBstModel) {
+        acc = "";
+
+        preOrder(treeBstModel.getRootNode());
+
+        return acc;
+    }
+
+    private static void preOrder(TreeNodeModel node) {
+        if (node != null) {
+            acc += " " + node.getValue();
+            preOrder(node.getLeft());
+            preOrder(node.getRight());
+        }
+    }
+
+    public static String printInOrder(TreeBstModel treeBstModel) {
+        acc = "";
+
+        inOrder(treeBstModel.getRootNode());
+
+        return acc;
+    }
+
+    private static void inOrder(TreeNodeModel node) {
+        if (node != null) {
+            inOrder(node.getLeft());
+            acc += " " + node.getValue();
+            inOrder(node.getRight());
+        }
+    }
+
+    public static String printPosOrder(TreeBstModel treeBstModel) {
+        acc = "";
+
+        posOrder(treeBstModel.getRootNode());
+
+        return acc;
+    }
+
+    private static void posOrder(TreeNodeModel node) {
+        if (node != null) {
+            posOrder(node.getLeft());
+            posOrder(node.getRight());
+            acc += " " + node.getValue();
+        }
+    }
+}
+
+
+class Main {
+    public static void main(String[] args) {
+        Scanner read = new Scanner(System.in);
+        StringBuilder result = new StringBuilder();
+
+        int tests = read.nextInt();
+
+        for (int i = 0; i < tests; i++) {
+            int k = read.nextInt();
+
+            int[] values = new int[k];
+            for (int j = 0; j < k; j++)
+                values[j] = read.nextInt();
+
+            TreeBstModel treeBst = TreeBstModel.buildFromValues(values, k);
+
+            result.append("Case ").append(i + 1).append(":\n").append(TreeHelper.printTree(treeBst)).append("\n");
+        }
+
+        System.out.print(result);
+        read.close();
+    }
+}
