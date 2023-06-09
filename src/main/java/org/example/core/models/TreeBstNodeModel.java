@@ -1,11 +1,11 @@
 package org.example.core.models;
 
-public class TreeNodeModel {
+public class TreeBstNodeModel {
     private int value;
-    private TreeNodeModel left;
-    private TreeNodeModel right;
+    private TreeBstNodeModel left;
+    private TreeBstNodeModel right;
 
-    public TreeNodeModel(int value) {
+    public TreeBstNodeModel(int value) {
         this.value = value;
         this.left = null;
         this.right = null;
@@ -19,19 +19,19 @@ public class TreeNodeModel {
         this.value = value;
     }
 
-    public TreeNodeModel getLeft() {
+    public TreeBstNodeModel getLeft() {
         return left;
     }
 
-    public void setLeft(TreeNodeModel left) {
+    public void setLeft(TreeBstNodeModel left) {
         this.left = left;
     }
 
-    public TreeNodeModel getRight() {
+    public TreeBstNodeModel getRight() {
         return right;
     }
 
-    public void setRight(TreeNodeModel right) {
+    public void setRight(TreeBstNodeModel right) {
         this.right = right;
     }
 }

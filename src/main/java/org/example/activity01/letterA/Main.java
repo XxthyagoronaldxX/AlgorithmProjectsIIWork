@@ -21,7 +21,11 @@ public class Main {
 
             TreeBstModel treeBst = TreeBstModel.buildFromValues(values, k);
 
-            result.append("Case ").append(i + 1).append(":\n").append(TreeHelper.printTree(treeBst)).append("\n");
+            result.append("Case ")
+                    .append(i + 1)
+                    .append(":\n")
+                    .append(TreeHelper.printTree(treeBst))
+                    .append("\n");
         }
 
         System.out.print(result);

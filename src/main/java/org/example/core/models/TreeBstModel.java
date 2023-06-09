@@ -1,7 +1,7 @@
 package org.example.core.models;
 
 public class TreeBstModel {
-    private TreeNodeModel rootNode;
+    private TreeBstNodeModel rootNode;
 
     public TreeBstModel() {
         this.rootNode = null;
@@ -17,7 +17,7 @@ public class TreeBstModel {
     }
 
     public boolean searchInTree(int value) {
-        TreeNodeModel currentNode = rootNode;
+        TreeBstNodeModel currentNode = rootNode;
 
         while (currentNode != null) {
             if (value > currentNode.getValue())
@@ -33,14 +33,14 @@ public class TreeBstModel {
     public void addNode(int value) {
         if (searchInTree(value)) return;
 
-        TreeNodeModel node = new TreeNodeModel(value);
+        TreeBstNodeModel node = new TreeBstNodeModel(value);
 
         if (rootNode == null) {
             rootNode = node;
             return;
         }
 
-        TreeNodeModel currentNode = rootNode;
+        TreeBstNodeModel currentNode = rootNode;
 
         while (true) {
             if (node.getValue() > currentNode.getValue()) {
@@ -61,7 +61,7 @@ public class TreeBstModel {
         }
     }
 
-    public TreeNodeModel getRootNode() {
+    public TreeBstNodeModel getRootNode() {
         return rootNode;
     }
 }

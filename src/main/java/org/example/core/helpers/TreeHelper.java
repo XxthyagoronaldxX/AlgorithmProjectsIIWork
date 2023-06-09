@@ -1,7 +1,7 @@
 package org.example.core.helpers;
 
 import org.example.core.models.TreeBstModel;
-import org.example.core.models.TreeNodeModel;
+import org.example.core.models.TreeBstNodeModel;
 
 public class TreeHelper {
     private static String acc;
@@ -20,7 +20,7 @@ public class TreeHelper {
         return acc;
     }
 
-    private static void preOrder(TreeNodeModel node) {
+    private static void preOrder(TreeBstNodeModel node) {
         if (node != null) {
             acc += " " + node.getValue();
             preOrder(node.getLeft());
@@ -36,7 +36,7 @@ public class TreeHelper {
         return acc;
     }
 
-    private static void inOrder(TreeNodeModel node) {
+    private static void inOrder(TreeBstNodeModel node) {
         if (node != null) {
             inOrder(node.getLeft());
             acc += " " + node.getValue();
@@ -52,7 +52,7 @@ public class TreeHelper {
         return acc;
     }
 
-    private static void posOrder(TreeNodeModel node) {
+    private static void posOrder(TreeBstNodeModel node) {
         if (node != null) {
             posOrder(node.getLeft());
             posOrder(node.getRight());
