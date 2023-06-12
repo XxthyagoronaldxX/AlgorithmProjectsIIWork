@@ -1,4 +1,4 @@
-package org.example.core.custom;
+package org.example.core.models;
 
 import java.util.Objects;
 

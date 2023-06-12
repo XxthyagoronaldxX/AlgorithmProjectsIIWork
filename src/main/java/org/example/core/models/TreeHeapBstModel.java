@@ -1,4 +1,6 @@
-package org.example.core.custom;
+package org.example.core.models;
+
+import java.util.*;
 
 public class TreeHeapBstModel {
     private HeapBstNodeModel rootNode;
@@ -6,9 +8,9 @@ public class TreeHeapBstModel {
     public void add(int value, int priority) {
         HeapBstNodeModel node = new HeapBstNodeModel(value, priority);
 
-        if (rootNode == null) {
+        if (rootNode == null) { //Árvore vazia.
             rootNode = node;
-        } else if (priority > rootNode.getPriority()) {
+        } else if (priority > rootNode.getPriority()) { //Caso o Nó tenha uma prioridade maior que o nó raiz.
             if (value > rootNode.getValue())
                 node.setLeft(rootNode);
             else

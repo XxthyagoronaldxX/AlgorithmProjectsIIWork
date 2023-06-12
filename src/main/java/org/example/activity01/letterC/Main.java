@@ -1,15 +1,32 @@
 package org.example.activity01.letterC;
 
-import org.example.core.models.TreeHeapModel;
+import org.example.core.models.TreeHeapBstModel;
+
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        TreeHeapModel treeHeapModel = new TreeHeapModel(3);
+    private static final Scanner read = new Scanner(System.in);
 
-        System.out.println(treeHeapModel.addNode('a', 7)
-                .addNode('b', 4)
-                .addNode('c', 6)
-                .heapMax()
-                .toString());
+    public static void main(String[] args) {
+        StringBuilder output = new StringBuilder();
+
+        while(true) {
+            int inputs = read.nextInt();
+
+            if (inputs == 0) break;
+
+            TreeHeapBstModel treeHeapBstModel = new TreeHeapBstModel();
+            for (int i = 0;i < inputs;i++) {
+                String input = read.next();
+
+                String[] values = input.split("/");
+
+                treeHeapBstModel.add(values[0].charAt(0), Integer.parseInt(values[1]));
+            }
+
+            output.append(treeHeapBstModel).append("\n");
+        }
+
+        System.out.print(output);
     }
 }
