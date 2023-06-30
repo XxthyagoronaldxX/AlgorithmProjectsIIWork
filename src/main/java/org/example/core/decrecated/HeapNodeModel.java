@@ -1,4 +1,4 @@
-package org.example.core.models;
+package org.example.core.decrecated;
 
 public class HeapNodeModel {
     private int priority;

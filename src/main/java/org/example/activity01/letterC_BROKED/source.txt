@@ -1,6 +1,80 @@
-package org.example.core.models;
+import java.util.Scanner;
+import java.util.Objects;
 
-public class TreeHeapBstModel {
+class HeapBstNodeModel {
+    private int value;
+    private int priority;
+    private HeapBstNodeModel parent;
+    private HeapBstNodeModel left;
+    private HeapBstNodeModel right;
+
+    public HeapBstNodeModel(int value, int priority) {
+        this.value = value;
+        this.priority = priority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        HeapBstNodeModel that = (HeapBstNodeModel) o;
+
+        if (value != that.value) return false;
+        if (priority != that.priority) return false;
+        if (!Objects.equals(left, that.left)) return false;
+        return Objects.equals(right, that.right);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = value;
+        result = 31 * result + priority;
+        return result;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public HeapBstNodeModel getParent() {
+        return parent;
+    }
+
+    public void setParent(HeapBstNodeModel parent) {
+        this.parent = parent;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public HeapBstNodeModel getLeft() {
+        return left;
+    }
+
+    public void setLeft(HeapBstNodeModel left) {
+        this.left = left;
+    }
+
+    public HeapBstNodeModel getRight() {
+        return right;
+    }
+
+    public void setRight(HeapBstNodeModel right) {
+        this.right = right;
+    }
+}
+
+class TreeHeapBstModel {
     private HeapBstNodeModel rootNode;
 
     public void add(int value, int priority) {
@@ -85,5 +159,33 @@ public class TreeHeapBstModel {
     @Override
     public String toString() {
         return customToString(rootNode);
+    }
+}
+
+
+class Main {
+    private static final Scanner read = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        StringBuilder output = new StringBuilder();
+
+        while(true) {
+            int inputs = read.nextInt();
+
+            if (inputs == 0) break;
+
+            TreeHeapBstModel treeHeapBstModel = new TreeHeapBstModel();
+            for (int i = 0;i < inputs;i++) {
+                String input = read.next();
+
+                String[] values = input.split("/");
+
+                treeHeapBstModel.add(values[0].charAt(0), Integer.parseInt(values[1]));
+            }
+
+            output.append(treeHeapBstModel).append("\n");
+        }
+
+        System.out.print(output);
     }
 }
