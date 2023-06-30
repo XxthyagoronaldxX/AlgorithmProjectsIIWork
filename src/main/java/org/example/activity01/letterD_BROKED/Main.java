@@ -24,8 +24,6 @@ public class Main {
                     for (int l = 0;l+j <= work.length(); l++) {
                         String value = work.substring(l, l + j);
 
-                        System.out.println(value);
-
                         substrings.add(value);
                     }
                 }
